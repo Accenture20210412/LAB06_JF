@@ -6,10 +6,10 @@ public class Main {
         Firewall firewall = new Firewall();
         Logger logger = new Logger();
         RiskManager riskManager = new RiskManager();
-        firewall.addObserver(logger);
-        firewall.addObserver(riskManager);
+        firewall.getObservers().attach(logger);
+        firewall.getObservers().attach(riskManager);
         firewall.startFirewall();
-        firewall.deactivateteObserber(riskManager);
+        firewall.getObservers().detach(riskManager);
         firewall.startFirewall();
         logger.displayIncidents();
     }
