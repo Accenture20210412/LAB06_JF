@@ -15,14 +15,25 @@ public class Firewall {
         }
     }
 
+    public void addObserver(FirewallObserver observer) {
+        observers.add(observer);
+    }
+    public void deactivateteObserber(FirewallObserver observer) {
+        observers.remove(observer);
+    }
+
 
     public void startFirewall() {
+        int i = 0;
         for(;;) {
             try {
                 Thread.sleep(TimeUnit.SECONDS.toMillis(2));
                 FirewallIncitent justNow = possibleIncidents[fate.nextInt(200) % possibleIncidents.length];
-                System.out.println(justNow.name());
                 notifyObservers(justNow);
+                i++;
+                if (i > 5) {
+                    break;
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

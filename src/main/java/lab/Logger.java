@@ -4,10 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Logger implements FirewallObserver {
-    List<String> incidents  = new LinkedList<>();
+    private List<String> incidents  = new LinkedList<>();
+
+    public void displayIncidents() {
+        incidents.forEach(System.out::println);
+    }
 
     @Override
     public void update(FirewallIncitent incitent) {
-        incidents.add(incitent.name());
+        incidents.add(incitent.name()   );
     }
 }
